@@ -1,30 +1,14 @@
-const Order = require('../models/order');
+const Order = require('../models/Order');
 
-const placeOrder = async (req, res) => {
-  const { items, total, paymentMethod } = req.body;
+exports.placeOrder = async (req, res) => {
+  const { userId, items, totalAmount } = req.body;
 
-  try {
-    const order = new Order({
-      user: req.user._id,
-      items,
-      total,
-      paymentMethod
-    });
+  const order = new Order({
+    userId,
+    items,
+    totalAmount,
+  });
 
-    await order.save();
-    res.status(201).json({ message: "Order placed successfully", order });
-  } catch (err) {
-    res.status(500).json({ message: "Failed to place order", error: err.message });
-  }
+  await order.save();
+  res.status(201).json({ message: 'Order placed successfully' });
 };
-
-const getUserOrders = async (req, res) => {
-  try {
-    const orders = await Order.find({ user: req.user._id });
-    res.json(orders);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-
-module.exports = { placeOrder, getUserOrders };

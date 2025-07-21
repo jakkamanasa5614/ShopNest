@@ -2,44 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ShopNest | Home</title>
+  <title>ShopNest - Home</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>🛍️ ShopNest</h1>
-    <nav>
-      <a href="cart.html">🛒 Cart</a>
-      <a href="login.html">Login</a>
-    </nav>
-  </header>
+  <h1>🛒 ShopNest - Products</h1>
+  <div id="product-list"></div>
 
-  <main id="product-list" class="product-container">
-    <!-- Product cards will be added by JavaScript -->
-  </main>
-  <a href="my-orders.html">🧾 My Orders</a>
-
-
-  <script>
-    const products = [
-      { id: 1, name: "T-Shirt", price: 499, image: "https://via.placeholder.com/150" },
-      { id: 2, name: "Shoes", price: 999, image: "https://via.placeholder.com/150" },
-      { id: 3, name: "Backpack", price: 799, image: "https://via.placeholder.com/150" },
-    ];
-
-    const productList = document.getElementById("product-list");
-
-    products.forEach(product => {
-      productList.innerHTML += `
-        <div class="product-card">
-          <img src="${product.image}" alt="${product.name}" />
-          <h3>${product.name}</h3>
-          <p>₹${product.price}</p>
-          <a href="product.html?id=${product.id}" class="view-btn">View Product</a>
-        </div>
-      `;
-    });
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
