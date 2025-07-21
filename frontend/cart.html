@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopNest | Product Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🛍️ ShopNest</h1>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="cart.html">🛒 Cart</a>
+    </nav>
+  </header>
+
+  <main id="product-details" class="product-details-container">
+    <!-- Product details will be loaded here -->
+  </main>
+
+  <script>
+    const products = [
+      { id: 1, name: "T-Shirt", price: 499, description: "A comfy cotton T-Shirt.", image: "https://via.placeholder.com/300" },
+      { id: 2, name: "Shoes", price: 999, description: "Stylish running shoes.", image: "https://via.placeholder.com/300" },
+      { id: 3, name: "Backpack", price: 799, description: "Spacious and durable backpack.", image: "https://via.placeholder.com/300" },
+    ];
+
+    // Get product ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = parseInt(urlParams.get("id"));
+
+    // Find product by ID
+    const product = products.find(p => p.id === productId);
+
+    const container = document.getElementById("product-details");
+
+    if (product) {
+      container.innerHTML = `
+        <div class="product-detail-card">
+          <img src="${product.image}" alt="${product.name}" />
+          <div>
+            <h2>${product.name}</h2>
+            <p>${product.description}</p>
+            <h3>Price: ₹${product.price}</h3>
+            <button onclick="addToCart(${product.id})">Add to Cart</button>
+          </div>
+        </div>
+      `;
+    } else {
+      container.innerHTML = "<p>Product not found.</p>";
+    }
+
+    function addToCart(id) {
+      alert("Product " + id + " added to cart!");
+      // In full version, you'd store in localStorage or backend
+    }
+  </script>
+</body>
+</html>
